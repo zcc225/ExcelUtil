@@ -416,7 +416,18 @@ public class ExcelUtil {
                         Integer index = 0;
                         while (cellIterator.hasNext()) {
                             String value = cellIterator.next().getStringCellValue();
-                            titleMap.put(value, index);
+                            value= value.trim();
+                            boolean containsKey = titleMap.containsKey(value);
+                          String k1 = value;
+                          int i =1;
+                  		while(containsKey){
+                  			k1 = value+i;
+                  			containsKey = titleMap.containsKey(k1);
+                  			i++;
+                  		}
+                  		i = 1;
+                            titleMap.put(k1, index);
+                            
                             index++;
                         }
                     }
@@ -448,6 +459,7 @@ public class ExcelUtil {
                         } else {
                             cell.setCellType(CellType.STRING);
                             String value = cell.getStringCellValue();
+//                            
                             map.put(k, value);
                         }
                     }
